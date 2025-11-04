@@ -1,6 +1,13 @@
 // time
 date.textContent = time();
 
+function namefunc(){
+    name1 = document.getElementById("name").value;
+    msg.textContent = "hi " + name1 + ", select a level to start playing!";
+
+}
+namebtn.addEventListener("click", namefunc);
+
 
 // global variables/constants
 let score, answer, level;
@@ -75,7 +82,7 @@ function updateScore(){
     let sum = 0;
     scoreArr.sort((a,b) => a-b)//sorts ascending
     //leaderboard
-    const lb = document.getElementById("leaderboard");
+    const lb = document.getElementsByName("leaderboard");
     for(let i=0; i<scoreArr.length; i++){
         sum+= scoreArr[i];
         if(i< lb.length){
@@ -84,4 +91,8 @@ function updateScore(){
     }
     let avg = sum/scoreArr.length
     avgScore.textContent = "avg score: " + avg.toFixed(2);
+}
+function giveUp(){
+    msg.textContent = "the answer was " + answer;
+    reset();
 }
