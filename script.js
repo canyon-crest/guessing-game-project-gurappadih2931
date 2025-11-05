@@ -65,8 +65,12 @@ function makeGuess(){
         reset();
         updateScore();
     }
+    if (score >= 5){
+        feedback();
+    }
 }
 function reset(){
+    giveUpBtn.disabled = true;
     guessBtn.disabled = true;
     guess.value = "";
     guess.placeholder = "";
@@ -95,4 +99,12 @@ function updateScore(){
 function giveUp(){
     msg.textContent = "the answer was " + answer;
     reset();
+}
+function feedback(){
+    if (score > 5){
+        msg.textContent += "! You can do better!";
+    }
+    else{
+        msg.textContent += " Great job!";
+    }
 }
