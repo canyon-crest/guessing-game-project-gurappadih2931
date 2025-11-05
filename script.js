@@ -18,16 +18,17 @@ const scoreArr = [];
 // event listerners
 playBtn.addEventListener("click", play);
 guessBtn.addEventListener("click", makeGuess);
-
-
+giveUpbtn.addEventListener("click", giveUp);
+//month array
 
 
 function time(){
-
+    const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let d = new Date();
     //concatenate the date and time
-    let str = d.getMonth()+1 + "/" + d.getDate() + "/"+ d.getFullYear()
+    let str = monthArr[d.getMonth()] + "/" + d.getDate() + "/"+ d.getFullYear()
     return str;
+    
 }
 function play(){
     playBtn.disabled = true;
@@ -65,12 +66,15 @@ function makeGuess(){
         reset();
         updateScore();
     }
-    if (score >= 5){
-        feedback();
+    if (score <= 5){
+        msg.textContent += " you're doing great!";
+    }
+    else{
+        msg.textContent += " you suck at this!";
     }
 }
 function reset(){
-    giveUpBtn.disabled = true;
+    giveUp.disabled = true;
     guessBtn.disabled = true;
     guess.value = "";
     guess.placeholder = "";
@@ -97,14 +101,16 @@ function updateScore(){
     avgScore.textContent = "avg score: " + avg.toFixed(2);
 }
 function giveUp(){
-    msg.textContent = "the answer was " + answer;
-    reset();
+  score = level;
+  msg.textContent = "you gave up! the answer was " + answer + ".";
+  reset();
+  updateScore();
+  giveUpBtn.disabled = true;
+    
 }
-function feedback(){
-    if (score > 5){
-        msg.textContent += "! You can do better!";
-    }
-    else{
-        msg.textContent += " Great job!";
-    }
+var startTimer = setInterval(function(){myTimer()}, 1000);
+
+function myTimer(){
+  var current = new Date();
+  document.getElementById("timer").innerHTML = current.toLocaleTimeString();
 }
