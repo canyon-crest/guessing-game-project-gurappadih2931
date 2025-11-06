@@ -16,6 +16,7 @@ const scoreArr = [];
 var current = new Date();
 let startTime; //current.getTime();
 const timeArr = [];
+ let userGuess = Number(guess.value);
 
 
 // event listerners
@@ -45,7 +46,7 @@ function play(){
          }
     }
     answer = Math.floor(Math.random()*level)+1;
-    msg.textContent = "guess a number from 1 to " + level   
+    msg.textContent = name1 + " guess a number from 1 to " + level; 
     guess.placeholder = answer;
     score = 0;
     //let current-time = 
@@ -53,17 +54,17 @@ function play(){
 
 
 function makeGuess(){
-    let userGuess = Number(guess.value);
+    //let userGuess = Number(guess.value);
     if(isNaN(userGuess)){
         msg.textContent = "invalid, guess a number!";
         return;
     }
     score++;
     if(userGuess>answer){
-        msg.textContent = "too high"
+        msg.textContent = distance() + " too high";
     }
     else if(userGuess < answer){
-        msg.textContent = "too low"
+        msg.textContent = distance() + " too low";
         
     }
     else{
@@ -72,12 +73,7 @@ function makeGuess(){
         updateScore();
     }
     
-    if (score <= 5){
-        msg.textContent += " you're doing great!";
-    }
-    else{
-        msg.textContent += " your not good at this!";
-    }
+    
 }
 function reset(){
     giveUp.disabled = true;
@@ -99,18 +95,20 @@ function updateScore(){
    
     var dif = new Date().getTime() - startTime;
     var seconds = Math.floor(dif / 1000);
-    //msg.textContent += " It took you " + seconds + " seconds.";
+    
     timeArr.push(seconds);
     avgtime.textContent = "avg time: " + seconds.toFixed(2) + " seconds";
     
-    //msg.textContent += (timeArr)/ timeArr.length + " is your average time.";
+    
     let sum2 = 0;
     for(let i=0; i<timeArr.length; i++){
         sum2 += timeArr[i];
     }
     let avg2 = sum2/ timeArr.length;
-    //msg.textContent += " Your average time is " + avg2.toFixed(2) + " seconds.";
-    
+   
+
+    feedbackmsg.textContent = "your score was: " + feedback();
+
     //leaderboard
     const lb = document.getElementsByName("leaderboard");
     for(let i=0; i<scoreArr.length; i++){
@@ -118,8 +116,7 @@ function updateScore(){
         if(i< lb.length){
             lb[i].textContent = scoreArr[i];
         }
-        //msg.textContent += " Your avg time is " + avg2.toFixed(2) + " seconds.";
-        //msg.textContent += "your score was" + feedback();
+       
     }
     let avg = sum/scoreArr.length
     avgScore.textContent = "avg score: " + avg.toFixed(2);
@@ -133,23 +130,38 @@ function giveUp(){
   giveUpbtn.disabled = true;
     
 }
-var startTimer = setInterval(function(){myTimer()}, 1000);
+  var startTimer = setInterval(myTimer, 1000),
+        timerElement = document.getElementById("timer"),
+        buttonElement = document.getElementById("myButton");
+    
+    function myTimer(){
+        var current = new Date();
+        timerElement.innerHTML = current.toLocaleTimeString();
+    }
 
-function myTimer(){
-  //var current = new Date();
-  document.getElementById("timer").innerHTML = current.toLocaleTimeString();
-}
 function feedback(){
-    if(score > 5){
-        msg.textContent += "  okay.";
-        return;
+    if(score > 5 && score <7){
+        return "okay.";
     }
     if(score <= 5){
-        msg.textContent += "  great!";
-        return;
+        
+        return "great!";
     }
-    if(score > 7){
-        msg.textContent += "  terrible.";
-        return;
+    if(score >= 7){
+        return "terrible!";
+        
     }
+}
+
+function distance(){
+    if(Math.abs(answer)-userGuess <= 5){
+        return "You are BOILING HOT!";
+    }
+    if(Math.abs(answer)-userGuess <=10){
+        return "You are WARM.";
+    }
+    if(Math.abs(answer)-userGuess >15){
+        return "You're COLD.";
+    }
+    
 }
