@@ -47,7 +47,7 @@ function play(){
     }
     answer = Math.floor(Math.random()*level)+1;
     msg.textContent = name1 + " guess a number from 1 to " + level; 
-    //guess.placeholder = answer;
+    guess.placeholder = answer;
     score = 0;
     //let current-time = 
 }
@@ -153,15 +153,15 @@ function feedback(){
     }
 }
 
-function distance(){
-    if(Math.abs(answer)-userGuess <= 5){
+function distance(){ 
+if(Math.abs(answer)-userGuess <= 5){
         return "You are BOILING HOT!";
     }
-    if(Math.abs(answer)-userGuess <=10){
+if(Math.abs(answer)-userGuess <=10){
         return "You are WARM.";
     }
-    if(Math.abs(answer)-userGuess >15){
+if(Math.abs(answer)-userGuess >15){
         return "You're COLD.";
     }
-    
 }
+    
