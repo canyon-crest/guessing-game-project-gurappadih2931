@@ -47,14 +47,14 @@ function play(){
     }
     answer = Math.floor(Math.random()*level)+1;
     msg.textContent = name1 + " guess a number from 1 to " + level; 
-    guess.placeholder = answer;
+    //guess.placeholder = answer;
     score = 0;
     //let current-time = 
 }
 
 
 function makeGuess(){
-    //let userGuess = Number(guess.value);
+    let userGuess = Number(guess.value);
     if(isNaN(userGuess)){
         msg.textContent = "invalid, guess a number!";
         return;
