@@ -7,11 +7,17 @@
   </head>
   <body>
     <p id="timer"></p>
-    <button id="myButton" onclick="stop(startTimer)"></button>
+  
     <p id="date"></p>
+    
+    <button id="myButton" onclick="stop(startTimer)">Please Enter your name first!</button>
+<br>
+<br>
     <input = "name" type = "text" id="name" placeholder="Enter your name"  >
     <button id="namebtn" >confirm name</button>
+    
     <h3>Level</h3>
+    
     <input type="radio" name="level" id="e" value="3" checked><label for="e">Easy</label>
     <input type="radio" name="level" id="m" value="10"><label for="m">Medium</label>
     <input type="radio" name="level" id="h" value="100"><label for="h">Hard</label>
@@ -26,12 +32,14 @@
     <h3>Stats</h3>
     <p id="wins">Total wins: 0</p>
     <p id="avgScore">Average Score: </p>
+    <p id="avgtime">AVG time:</p>
+    
 
     <h3>Leaderboard</h3>
     <ol>
-      <li name="leaderboard">100</li>
-      <li name="leaderboard">100</li>
-      <li name="leaderboard">100</li>
+      <li name="leaderboard"></li>
+      <li name="leaderboard"></li>
+      <li name="leaderboard"></li>
     </ol>
 
   </body>
