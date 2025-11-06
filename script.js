@@ -1,4 +1,6 @@
 // time
+
+
 date.textContent = time();
 var name1 = "";
 function namefunc(){
@@ -164,4 +166,29 @@ if(Math.abs(answer)-userGuess >15){
         return "You're COLD.";
     }
 }
-    
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+const themeToggle = document.getElementById("themeToggle");
+
+// start in light mode
+document.body.style.backgroundColor = "white";
+document.body.style.color = "black";
+
+themeToggle.addEventListener("click", () => {
+  if (document.body.style.backgroundColor === "white") {
+    // switch to dark mode
+    document.body.style.backgroundColor = "#121212";
+    document.body.style.color = "white";
+    themeToggle.textContent = "🌙 Dark Mode";
+    themeToggle.style.backgroundColor = "#333";
+    themeToggle.style.color = "white";
+  } else {
+    // switch to light mode
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black";
+    themeToggle.textContent = "🌞 Light Mode";
+    themeToggle.style.backgroundColor = "#ddd";
+    themeToggle.style.color = "black";
+  }
+});
